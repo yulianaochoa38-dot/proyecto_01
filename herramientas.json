@@ -1,0 +1,26 @@
+{
+    "01": {
+        "id": "01",
+        "nombre": "taladro",
+        "categoria": "construccion",
+        "cantidad": 12,
+        "estado": "inactiva",
+        "valor": 220.0
+    },
+    "05": {
+        "id": "05",
+        "nombre": "hombresolo",
+        "categoria": "construccion",
+        "cantidad": 3,
+        "estado": "activa",
+        "valor": 300.0
+    },
+    "08": {
+        "id": "08",
+        "nombre": "alicate",
+        "categoria": "ensamble",
+        "cantidad": 12,
+        "estado": "activa",
+        "valor": 20.0
+    }
+}

@@ -1,20 +1,29 @@
-from usuarios import obtener_usuarios, crear_usuarios, buscar_usuario, actualizar_usuario, eliminar_usuario, guardar_usuarios
-from prestamos import menu_prestamos, registrar_prestamo, mostrar_prestamos
+import os
+os.system('cls')
 
-#def precargar_datos_iniciales():
-#    if not obtener_usuarios():
-#        crear_usuarios("101", "pablo", "martinez", "3003505540", "Calle 27 #17", "administrados")
-#        crear_usuarios("102", "juan", "lopez", "3108765444", "Carrera 15 #41-13", "residente")
+from usuarios import obtener_usuarios, crear_usuarios, buscar_usuario, actualizar_usuario, eliminar_usuario, guardar_usuarios, listar_usuarios
+from prestamos import menu_prestamos, registrar_prestamo, mostrar_prestamos, menu_consultas_y_reportes
+from gestion_herramientas import menu_herramientas, consultar_catalogo
+from persistence import guardar_datos, cargar_datos
 
+def precargar_datos_iniciales():
+    #Asegura que existan los archivo JSON con estructuras base validas
+    if not cargar_datos("usuarios.json"):
+        guardar_datos([], "usuarios.json")
+    if not cargar_datos("herramientas.json"):
+        guardar_datos({}, "herramientas.json")
+    if not cargar_datos("prestamos.json"):
+        guardar_datos([], "prestamos.json")
+
+  
 def menu_administrador(user):
     while True:
         print("-----MENU ADMINISTRADOR------ ")
         print("1. Gestionar Usuarios")
         print("2. Gestionar Herramientas")
-        print("3. Aprobar / Rechazar Prestamos")
-        print("4. Registrar Devolucion")
-        print("5. Consultas y Reportes")
-        print("6. Cerrar Sesion")
+        print("3. Gestionar Prestamos")
+        print("4. Consultas y Reportes")
+        print("5. Cerrar Sesion")
         opcion = input("Seleccione una opcion del menu: ")
 
         if opcion == "1":
@@ -30,9 +39,9 @@ def menu_administrador(user):
                 tipo = input("Tipo (administrador/residente): ")
                 ok, msg = crear_usuarios(id_u, nom, ape, tel, dir_u, tipo)
                 print(msg)
-            elif sub == "2":
-                for u in obtener_usuarios():
-                    print(u)
+
+            elif sub == "2": 
+                listar_usuarios()
             elif sub == "3":
                 id_u = input("ID a buscar: ")
                 print(buscar_usuario(id_u) or "No encontrado")
@@ -50,11 +59,20 @@ def menu_administrador(user):
                 id_u = input("Ingrese el ID del usuario a eliminar: ")   
                 ok, msg = eliminar_usuario(id_u)
                 print(msg)
+        elif opcion == "2":
+            menu_herramientas()       
 
-        if opcion == "3": 
-            menu_prestamos(user)                 
-        if opcion == "6":
-            break        
+        elif opcion == "3": 
+            menu_prestamos() 
+
+        elif opcion == "4":
+            menu_consultas_y_reportes()
+
+        elif opcion == "5":
+            print("Cerrando sesion...")
+            break
+        else:
+            print("Opcion invalida.") 
 
 
 def menu_residente(user):
@@ -66,28 +84,42 @@ def menu_residente(user):
         print("4. Cerrar Sesion")
         opcion = input("Seleccione una opcion: ")
 
+        if opcion == "1":
+            consultar_catalogo()
+        if opcion == "2":
+            menu_prestamos()
+        if opcion == "3":
+            id_u = user["id"] if isinstance(user, dict) else user
+            mostrar_prestamos(id_u)
+        elif opcion == "4":
+            print("Cerrando sesion..")
+            break
+        else:
+            print("Opcion invalida.")    
 
-#def main():
-    #precargar_datos_iniciales()
-    #while True:
-        #print("-----------------------------------")
-        #print(" SISTEMA DE COMUNIDAD - PRESTAMOS ")
-        #print("-----------------------------------")
-        #id_u = input("Ingrese su ID de usuario (o 'Salir'): ")
-        #if id_u.lower() == 'salir':
-        #    break
+def main():
+    precargar_datos_iniciales()
+
+    while True:
+        print("\n-----------------------------------")
+        print(" SISTEMA DE COMUNIDAD - PRESTAMOS ")
+        print("-----------------------------------")
+        id_u = input("Ingrese su ID de usuario (o 'Salir'): ")
+        if id_u.lower() == 'salir':
+            print("¡Hasta Luego!")
+            break
           
-        #usuario = buscar_usuario(id_u)
-        #if not usuario:
-        #    print("Usuario no encontrado.")
-        #    continue
+        usuario = buscar_usuario(id_u)
+        if not usuario:
+            print("Usuario no encontrado.")
+            continue
 
-        #print(f"Bienvenido/a {usuario['nombres']} ({usuario['tipo'].upper()})")
-        #if usuario("tipo") == "administrador":
-            #menu_administrador(usuario)
-        #else:
-            #menu_residente(usuario) 
+        print(f"\nBienvenido/a {usuario ['nombres']} ({usuario['tipo'].upper()})")
+        if str(usuario.get("tipo", "")).lower() == "administrador":
+            menu_administrador(usuario)
+        else:
+            menu_residente(usuario) 
 #Evalua si el archivo se esta ejecutando como programa principal.
-#if __name__ == "__main__":
-#    main()               
+if __name__ == "__main__":
+    main()               
 

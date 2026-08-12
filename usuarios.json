@@ -1,0 +1,26 @@
+[
+    {
+        "id": "108",
+        "nombres": "Maicol",
+        "apellidos": "Lopez",
+        "telefono": "342578678",
+        "direccion": "Carrera 27 # 37-90",
+        "tipo": "administrador"
+    },
+    {
+        "id": "109",
+        "nombres": "Sofia",
+        "apellidos": "Marin",
+        "telefono": "352678790",
+        "direccion": "Calle 27 # 46-90",
+        "tipo": "residente"
+    },
+    {
+        "id": "198",
+        "nombres": "Sara ",
+        "apellidos": "Mendez",
+        "telefono": "3456785242",
+        "direccion": "Calle 20 #29-89",
+        "tipo": "administrador"
+    }
+]

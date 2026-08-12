@@ -1,0 +1,23 @@
+[2026-08-10 21:16:52] [ERROR]: Tipo de usuario invalido para el ID 101: administrador
+[2026-08-10 21:19:27] [ERROR]: Tipo de usuario invalido para el ID 101: aldminitrador 
+[2026-08-10 21:20:26] [ERROR]: Tipo de usuario invalido para el ID 101: administrador
+[2026-08-11 19:26:54] [ERROR]: Tipo de usuario invalido para el ID 101: administrador 
+[2026-08-11 19:32:20] [INFO]: Usuario crado existosamente: 101 - sara liliana cardona
+[2026-08-11 19:39:36] [ ERROR]: Intento fallido: Ya existe un usuario con ID 101
+[2026-08-11 19:45:47] [ ERROR]: Intento fallido: Ya existe un usuario con ID 101
+[2026-08-11 19:58:14] [ ERROR]: Intento fallido: Ya existe un usuario con ID 101
+[2026-08-11 20:02:08] [ ERROR]: Intento fallido: Ya existe un usuario con ID 101
+[2026-08-11 20:31:51] [INFO]: Usuario creado existosamente: 108 - Maicol Lopez
+[2026-08-11 20:47:28] [INFO]: Usuario creado existosamente: 109 - Sofia Marin
+[2026-08-11 21:35:59] [INFO]: Usuario 101 actualizado correctamente.
+[2026-08-11 21:36:16] [INFO]: Usuario 101 eliminado.
+[2026-08-11 21:37:32] [INFO]: Usuario creado existosamente: 198 - Sara  Mendez
+[2026-08-11 22:10:05] [INFO]: Herramienta registrada correctamente: 01
+[2026-08-11 22:18:17] [WARNING]: Herramienta no encontrada: 05
+[2026-08-11 22:19:29] [INFO]: Herramienta actualizada: 01
+[2026-08-11 22:19:41] [INFO]: Herramienta inactivada: 01
+[2026-08-11 23:00:16] [WARNING]: Intento fallido de préstamo: Usuario 101 no existe.
+[2026-08-11 23:04:35] [INFO]: Herramienta registrada correctamente: 05
+[2026-08-11 23:07:50] [INFO]: Préstamo registrado #1 a usuario 198.
+[2026-08-11 23:09:34] [INFO]: Devolución registrada para préstamo #1.
+[2026-08-12 00:08:05] [INFO]: Herramienta registrada correctamente: 08

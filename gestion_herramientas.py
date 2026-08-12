@@ -1,6 +1,7 @@
 from persistence import cargar_datos, guardar_datos
 from logger import registrar_log
 
+
 archivo_herramientas = "herramientas.json"
 # REGISTRAR HERRAMIENTA
 def registrar_herramienta():
@@ -66,6 +67,31 @@ def listar_herramientas():
         print("Estado:", datos["estado"])
         print("Valor:", datos["valor"])
     print("---------------------------------------")
+
+
+def consultar_catalogo():
+    herramientas = cargar_datos(archivo_herramientas)
+    if not herramientas:
+        print("No hay herramientas registradas.")
+        return
+
+    #Filtrar solo las activas con stock disponible 
+    disponibles = [
+        datos for datos in herramientas.values()
+        if datos.get("estado") == "activa" and datos.get("cantidad", 0) > 0
+    ]
+    if not disponibles:
+        print("\nNo hay herramientas disponibles en el catalogo en este momento. ")
+        return
+    print("\n-----CATÁLOGO DE HERRAMIENTAS DISPONIBLES -----")
+    for datos in disponibles:
+        print("---------------------------------------")
+        print("ID:", datos["id"])
+        print("Nombre:", datos["nombre"])
+        print("Categoría:", datos["categoria"])
+        print("Cantidad disponible:", datos["cantidad"])
+        print("Valor estimado:", datos["valor"])
+    print("---------------------------------------")   
 
 # BUSCAR HERRAMIENTA
 def buscar_herramienta():
@@ -155,7 +181,7 @@ def menu_herramientas():
         print("3. Buscar herramienta")
         print("4. Actualizar herramienta")
         print("5. Eliminar/Inactivar herramienta")
-        print("6. Salir")
+        print("6. Volver al menu principal")
         print("======================================")
 
         try:
@@ -173,11 +199,10 @@ def menu_herramientas():
                 eliminar_herramienta()
             elif opcion == 6:
                 print("Gracias por usar el sistema de herramientas.")
+                print("=============================================")
+                break
             else:
                 print("Opción inválida.")
         except ValueError:
             print("Error: debe ingresar un número entero.")
 
-# EJECUTAR PROGRAMA
-if __name__ == "__main__":
-    menu_herramientas()

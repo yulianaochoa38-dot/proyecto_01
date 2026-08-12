@@ -1,0 +1,13 @@
+[
+    {
+        "id": 1,
+        "usuario_id": "198",
+        "herramienta_id": "05",
+        "herramienta_nombre": "hombresolo",
+        "cantidad": 2,
+        "fecha_inicio": "2026-08-11",
+        "fecha_devolucion": "2026-09-15",
+        "estado": "Devuelto",
+        "observaciones": "Devolver en buen estado"
+    }
+]

@@ -1,7 +1,7 @@
 import json
 import os
 from logger import registrar_log
-def guardar_datos(datos, nombre_archivo):
+def guardar_datos(datos, nombre_archivo="usuarios.json"):
     try:
         with open(nombre_archivo, "w", encoding="utf-8") as archivo:
             json.dump(datos, archivo, indent=4, ensure_ascii=False)

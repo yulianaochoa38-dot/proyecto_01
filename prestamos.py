@@ -23,8 +23,6 @@ def registrar_prestamo(usuario_actual=None):
         herramientas = {}
 
     print("\n--- REGISTRAR PRÉSTAMO ---")
-    
-    # Si viene el usuario del sistema desde el main, lo toma automáticamente
     if usuario_actual and "id" in usuario_actual:
         id_usuario = usuario_actual["id"]
         print(f"Usuario solicitante: {usuario_actual.get('nombres', '')} {usuario_actual.get('apellidos', '')} (ID: {id_usuario})")
@@ -165,33 +163,7 @@ def devolver_herramienta():
         print("Error: Ingrese un ID numérico válido.")
 
 
-def menu_prestamos(usuario_actual=None):
-    """Función principal del módulo para ser llamada desde main.py"""
-    opcion = "0"
-    while opcion != "4":
-        print("\n======================================")
-        print("       GESTIÓN DE PRÉSTAMOS")
-        print("======================================")
-        print("1. Registrar préstamo")
-        print("2. Consultar préstamos")
-        print("3. Registrar devolución")
-        print("4. Volver")
-        print("======================================")
-
-        opcion = input("Seleccione una opción: ").strip()
-
-        if opcion == "1":
-            registrar_prestamo(usuario_actual)
-        elif opcion == "2":
-            mostrar_prestamos()
-        elif opcion == "3":
-            devolver_herramienta()
-        elif opcion == "4":
-            break
-        else:
-            print("Opción inválida.")
 def reporte_stock_bajo():
-    """Herramientas con stock bajo (por ejemplo, menos de 3 unidades)"""
     herramientas = cargar_datos(archivo_herramientas)
     if not isinstance(herramientas, dict) or not herramientas:
         print("\nNo hay herramientas en el sistema.")
@@ -210,7 +182,6 @@ def reporte_stock_bajo():
 
 
 def reporte_prestamos_activos_y_vencidos():
-    """Préstamos activos y vencidos"""
     prestamos = obtener_prestamos()
     if not prestamos:
         print("\nNo hay préstamos registrados.")
@@ -246,13 +217,11 @@ def reporte_prestamos_activos_y_vencidos():
 
 
 def reporte_historial_usuario():
-    """Historial de préstamos de un usuario"""
     id_usuario = input("\nIngrese el ID del usuario a consultar: ").strip()
     mostrar_prestamos(id_usuario)
 
 
 def reporte_herramientas_mas_solicitadas():
-    """Herramientas más solicitadas por la comunidad"""
     prestamos = obtener_prestamos()
     if not prestamos:
         print("\nNo hay registro de préstamos para calcular solicitudes.")
@@ -273,7 +242,6 @@ def reporte_herramientas_mas_solicitadas():
 
 
 def reporte_usuarios_mas_solicitantes():
-    """Usuarios que más herramientas han solicitado"""
     prestamos = obtener_prestamos()
     if not prestamos:
         print("\nNo hay registro de préstamos para calcular usuarios.")
@@ -292,7 +260,6 @@ def reporte_usuarios_mas_solicitantes():
 
 
 def menu_consultas_y_reportes():
-    """Submenú exclusivo para Consultas y Reportes"""
     opcion = "0"
     while opcion != "6":
         print("\n======================================")
@@ -324,22 +291,17 @@ def menu_consultas_y_reportes():
             print("Opción inválida.")
 
 
-# ==========================================
-# 3. MENÚ PRINCIPAL DEL MÓDULO
-# ==========================================
-
 def menu_prestamos(usuario_actual=None):
-    """Función para ser llamada desde main.py"""
+    
     opcion = "0"
-    while opcion != "5":
+    while opcion != "4":
         print("\n======================================")
         print("       GESTIÓN DE PRÉSTAMOS")
         print("======================================")
         print("1. Registrar préstamo")
         print("2. Consultar préstamos")
         print("3. Registrar devolución")
-        print("4. Consultas y Reportes")
-        print("5. Volver")
+        print("4. Volver")
         print("======================================")
 
         opcion = input("Seleccione una opción: ").strip()
@@ -351,8 +313,6 @@ def menu_prestamos(usuario_actual=None):
         elif opcion == "3":
             devolver_herramienta()
         elif opcion == "4":
-            menu_consultas_y_reportes()
-        elif opcion == "5":
             break
         else:
             print("Opción inválida.")
